@@ -1,7 +1,11 @@
-# Recoil App
+# Recoil App(입력된 값의 길이를 보여주는 예제)
+
+리코일을 이용한 상태 관리
+
 ### `npm install recoil`
 ### `yarn add recoil`
-
+#
+#
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
