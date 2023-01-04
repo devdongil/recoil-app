@@ -14,19 +14,25 @@ const todoListState = atom({
   default: [],
 });
 
-function TodoList() {
+function TodoItemList() {
   const todoList = useRecoilValue(todoListState);
 
+  return (<>{
+    todoList.map((todoItem) =>
+      <TodoItem {...{
+        key: todoItem.id,
+        currentTodoItem: todoItem,
+        todoListState,
+      }} />
+    )
+  }</>)
+}
+
+function TodoList() {
   return (
     <div>
-      <TodoItemCreator todoListState={todoListState} />
-      {
-        todoList.map((todoItem) => (
-          <TodoItem key={todoItem.id} currentTodoItem={todoItem} todoListState={todoListState}></TodoItem>
-
-        ))
-
-      }
+      <TodoItemCreator {...{todoListState}} />
+      <TodoItemList />
     </div>
   );
 }
