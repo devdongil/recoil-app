@@ -9,6 +9,10 @@ import {
 import TodoItemCreator from "./TodoItemCreator";
 
 function TodoItem({ currentTodoItem, todoListState }) {
+  /**
+   * useRecoilState는 atom을 읽고 쓰려고 할 때 이 Hook을 사용한다<br>
+   * https://recoiljs.org/ko/docs/api-reference/core/useRecoilState <br>
+   */
   const [todoList, setTodoList] = useRecoilState(todoListState);
   const index = todoList.findIndex((todoItem) => todoItem === currentTodoItem);
 
