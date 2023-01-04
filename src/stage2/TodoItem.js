@@ -41,8 +41,16 @@ function TodoItem({ currentTodoItem, todoListState }) {
 
   return (
     <div>
-      <input type="text" value={currentTodoItem.text} onChange={inputValueChanged} />
-      <input type="checkbox" checked={currentTodoItem.isComplete} onChange={toggleComplete} />
+      <input {...{
+        type: 'text',
+        value: currentTodoItem.text,
+        onChange: inputValueChanged,
+      }} />
+      <input {...{
+        type: 'checkbox',
+        checked: currentTodoItem.isComplete,
+        onChange: toggleComplete,
+      }} />
       <button onClick={deleteTodoItem}>Delete</button>
     </div>
   );

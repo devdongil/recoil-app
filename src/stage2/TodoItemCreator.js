@@ -27,7 +27,11 @@ function TodoItemCreator({ todoListState }) {
 
   return (
     <div>
-      <input type="text" onChange={inputValueChanged} value={inputValue} />
+      <input {...{
+        type: 'text',
+        value: inputValue,
+        onChange: inputValueChanged,
+      }} />
       <button onClick={addTodoItem}>Add</button>
     </div>
   );
