@@ -9,6 +9,7 @@ import {
 import TodoItemCreator from "./TodoItemCreator";
 import TodoItem from "./TodoItem";
 import TodoListFilter from "./TodoListFilter";
+import TodoListStats from "./TodoListStats";
 
 /**
  * atom은 Recoil의 상태를 표현한다<br>
@@ -48,6 +49,25 @@ const filteredTodoListState = selector({
   },
 });
 
+const todoListStatsState = selector({
+  key: 'todoListStatsState',
+  get: ({ get }) => {
+    const todoList = get(todoListState);
+    const totalNum = todoList.length;
+    const totalCompleteNum = todoList.filter((todoItem) => todoItem.isComplete).length;
+    const totalUncompleteNum = totalNum - totalCompleteNum;
+    const percenterComplete = totalNum === 0 ? 0 : Math.round(totalCompleteNum / totalNum * 100);
+
+    return {
+      totalNum,
+      totalCompleteNum,
+      totalUncompleteNum,
+      percenterComplete,
+    };
+  },
+
+});
+
 function TodoItemList() {
   /**
    * useRecoilValue는 atom을 읽기만 할 때 이 Hook를 사용한다<br>
@@ -69,6 +89,7 @@ function TodoItemList() {
 function TodoList() {
   return (
     <div>
+      <TodoListStats {...{ todoListStatsState }} />
       <TodoListFilter {...{ todoListFilterState }} />
       <TodoItemCreator {...{ todoListState }} />
       <TodoItemList />
